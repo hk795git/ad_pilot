@@ -1,0 +1,101 @@
+:root {
+  --maxw: 980px;
+  --text: #111;
+  --muted: #666;
+  --bg: #ffffff;
+  --line: #e6e6e6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: #fafafa;
+}
+
+.masthead {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 16px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.logo { font-weight: 700; letter-spacing: 0.2px; }
+.nav { font-size: 14px; color: var(--muted); }
+
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 18px 16px 28px;
+}
+
+.story h1 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+}
+
+.byline {
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.lede { font-size: 18px; }
+.story p { margin: 0 0 16px; }
+
+/* Ad slots (photo-based) */
+.ad-slot {
+  border: 1px solid var(--line);
+  background: #fff;
+  overflow: hidden;
+}
+
+.ad-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* change to contain if you prefer no cropping */
+}
+
+/* Slot sizes */
+.ad-billboard { height: 180px; margin: 0 auto 14px; }
+.ad-inline { height: 110px; margin: 18px 0; }
+.ad-side { height: 260px; }
+.ad-bottom { height: 140px; margin-top: 24px; }
+
+/* Mid-article area with side ads */
+.mid-ads {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 24px 0;
+  align-items: start;
+}
+
+.mid-ads-article {
+  border: 1px solid var(--line);
+  background: #fcfcfc;
+  padding: 14px;
+}
+
+.mid-ads-article h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+@media (min-width: 900px) {
+  .mid-ads { grid-template-columns: 220px 1fr 220px; }
+  .ad-side { position: sticky; top: 16px; }
+}
