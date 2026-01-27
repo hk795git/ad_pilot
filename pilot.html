@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News Page Pilot</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="masthead">
+      <div class="logo">The Daily Ledger</div>
+      <div class="nav">U.S. · World · Business · Tech · Culture</div>
+    </div>
+
+    <!-- Billboard slot -->
+    <section class="ad-slot ad-billboard" id="slot-billboard" aria-label="Billboard advertisement">
+      <img id="img-billboard" class="ad-img" src="" alt="Sponsored billboard ad">
+    </section>
+  </header>
+
+  <main class="page">
+    <article class="story" aria-label="Main article">
+      <h1>City Leaders Debate New Transit Plan Amid Rising Costs</h1>
+      <div class="byline">By Staff Reporter · Pilot Article</div>
+
+      <p class="lede">
+        Officials outlined competing proposals as commuters voiced concerns about reliability and affordability.
+      </p>
+
+      <p>
+        The city’s transportation committee met Tuesday to review options that would expand service while
+        addressing maintenance backlogs.
+      </p>
+
+      <p>
+        Several members argued the plan should prioritize stations with the highest congestion. Others said
+        equity goals should guide the investment strategy.
+      </p>
+
+      <!-- Inline slot -->
+      <div class="ad-slot ad-inline" id="slot-inline" aria-label="Inline advertisement">
+        <img id="img-inline" class="ad-img" src="" alt="Sponsored inline ad">
+      </div>
+
+      <p>
+        Analysts noted that budget constraints could delay construction unless officials secure additional
+        funding from state and federal sources.
+      </p>
+
+      <!-- Side slots + mid section -->
+      <section class="mid-ads" aria-label="Mid-article ads with side rails">
+        <aside class="ad-slot ad-side" id="slot-side-left" aria-label="Left side advertisement">
+          <img id="img-side-left" class="ad-img" src="" alt="Sponsored side ad">
+        </aside>
+
+        <div class="mid-ads-article">
+          <h2>What happens next</h2>
+          <p>
+            The committee will vote next month. If approved, the plan moves to the city council for a final decision.
+          </p>
+          <p>
+            Public hearings are expected to continue through the end of the quarter.
+          </p>
+        </div>
+
+        <aside class="ad-slot ad-side" id="slot-side-right" aria-label="Right side advertisement">
+          <img id="img-side-right" class="ad-img" src="" alt="Sponsored side ad">
+        </aside>
+      </section>
+
+      <p>
+        Advocates said clearer timelines and performance targets would help rebuild public trust.
+      </p>
+    </article>
+
+    <!-- Bottom slot -->
+    <section class="ad-slot ad-bottom" id="slot-bottom" aria-label="Bottom advertisement">
+      <img id="img-bottom" class="ad-img" src="" alt="Sponsored bottom ad">
+    </section>
+  </main>
+
+  <script src="pilot.js"></script>
+</body>
+</html>
