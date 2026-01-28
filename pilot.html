@@ -7,6 +7,32 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
+  <script>
+(function () {
+  let sent = false;
+
+  function checkScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // Allow small buffer (50px)
+    if (!sent && scrollTop + windowHeight >= docHeight - 50) {
+      sent = true;
+
+      // Send message to parent (Qualtrics)
+      window.parent.postMessage(
+        { type: "SCROLLED_TO_BOTTOM" },
+        "*"
+      );
+    }
+  }
+
+  window.addEventListener("scroll", checkScroll);
+})();
+</script>
+
+  
 <body>
   <header class="site-header">
     <div class="masthead">
