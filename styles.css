@@ -76,7 +76,12 @@ body {
   aspect-ratio: 3 / 1;
   height: auto;
 }
-.ad-side { height: 260px; }
+.ad-side {
+  height: 260px;
+  width: 220px;
+  max-width: 220px;
+  flex-shrink: 0;
+}
 .ad-bottom { height: 140px; margin-top: 24px; }
 
 /* Mid-article area with side ads */
@@ -99,7 +104,17 @@ body {
   font-size: 20px;
 }
 
-@media (min-width: 900px) {
-  .mid-ads { grid-template-columns: 220px 1fr 220px; }
-  .ad-side { position: sticky; top: 16px; }
+@media (min-width: 700px) {
+  .mid-ads {
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    column-gap: 16px;
+    align-items: start;
+  }
+
+  .ad-side {
+    position: sticky;
+    top: 16px;
+    flex-shrink: 0;
+  }
 }
+
