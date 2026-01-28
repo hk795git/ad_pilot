@@ -66,12 +66,16 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover; /* change to contain if you prefer no cropping */
+  object-fit: contain; /* change to contain if you prefer no cropping */
 }
 
 /* Slot sizes */
 .ad-billboard { height: 180px; margin: 0 auto 14px; }
-.ad-inline { height: 110px; margin: 18px 0; }
+.ad-inline {
+  margin: 18px 0;
+  aspect-ratio: 3 / 1;
+  height: auto;
+}
 .ad-side { height: 260px; }
 .ad-bottom { height: 140px; margin-top: 24px; }
 
