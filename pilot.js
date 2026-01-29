@@ -1,10 +1,12 @@
 (() => {
   // ---------------------------------------
-  // READ CONDITION FROM URL
+  // READ PARAMS FROM URL
   // ---------------------------------------
-  // Expected: ?cond=billboard | side-left | side-right | inline | bottom
+  // cond: billboard | side-left | side-right | inline | bottom
+  // set:  A | B   (defaults to A if missing)
   const params = new URLSearchParams(window.location.search);
   const cond = params.get("cond");
+  const set = (params.get("set") || "A").toUpperCase();
 
   const SLOTS = ["billboard", "side-left", "side-right", "inline", "bottom"];
 
@@ -15,10 +17,14 @@
     return;
   }
 
+  if (!["A", "B"].includes(set)) {
+    console.warn("Invalid set. Use ?set=A or ?set=B");
+    return;
+  }
+
   // ---------------------------------------
   // BRAND SETUP (EDIT THESE NAMES ONLY)
   // ---------------------------------------
-  // Folder names must match exactly (case-sensitive)
   const FOCAL = "Encool"; // focal brand
   const FILLERS = ["Filler1", "Filler2", "Filler3", "Filler4"]; // filler brands
 
@@ -26,37 +32,34 @@
   // MAP SLOT -> IMAGE ELEMENT ID
   // ---------------------------------------
   const IMG_ID = {
-    "billboard": "img-billboard",
+    billboard: "img-billboard",
     "side-left": "img-side-left",
     "side-right": "img-side-right",
-    "inline": "img-inline",
-    "bottom": "img-bottom",
+    inline: "img-inline",
+    bottom: "img-bottom",
   };
 
   // ---------------------------------------
-  // SLOT-SPECIFIC CREATIVE PATHS
+  // CREATIVE PATHS
   // ---------------------------------------
-function creativePath(brand, slot, set) {
-  // Set B: one square image used for all slots
-  if (set === "B") {
-    return `images/brands/${brand}/ad.jpg`;
+  function creativePath(brand, slot, set) {
+    // Set B: one square image used for all slots
+    if (set === "B") {
+      return `images/brands/${brand}/ad.jpg`;
+    }
+
+    // Set A: slot-specific creatives
+    if (slot === "billboard") return `images/brands/${brand}/billboard.jpg`;
+    if (slot === "side-left") return `images/brands/${brand}/side-left.jpg`;
+    if (slot === "side-right") return `images/brands/${brand}/side-right.jpg`;
+    if (slot === "inline") return `images/brands/${brand}/inline.jpg`;
+    return `images/brands/${brand}/bottom.jpg`;
   }
-
-  // Set A: slot-specific creatives (keep your existing structure)
-  if (slot === "billboard") return `images/brands/${brand}/billboard.jpg`;
-  if (slot === "side-left") return `images/brands/${brand}/side-left.jpg`;
-  if (slot === "side-right") return `images/brands/${brand}/side-right.jpg`;
-  if (slot === "inline") return `images/brands/${brand}/inline.jpg`;
-  return `images/brands/${brand}/bottom.jpg`;
-}
-
 
   // ---------------------------------------
   // ASSIGN BRANDS TO SLOTS
   // ---------------------------------------
-  // Focal brand goes in the condition slot
-  // Fillers go in remaining slots (fixed order)
-  const remainingSlots = SLOTS.filter(slot => slot !== cond);
+  const remainingSlots = SLOTS.filter((slot) => slot !== cond);
 
   const assignment = {};
   assignment[cond] = FOCAL;
@@ -66,9 +69,9 @@ function creativePath(brand, slot, set) {
   });
 
   // ---------------------------------------
-  // APPLY IMAGES TO PAGE
+  // APPLY IMAGES
   // ---------------------------------------
-  SLOTS.forEach(slot => {
+  SLOTS.forEach((slot) => {
     const img = document.getElementById(IMG_ID[slot]);
     if (!img) return;
 
@@ -76,11 +79,9 @@ function creativePath(brand, slot, set) {
     img.src = creativePath(brand, slot, set);
     img.setAttribute("data-brand", brand);
     img.setAttribute("data-slot", slot);
+    img.setAttribute("data-set", set);
   });
 
-  // ---------------------------------------
-  // DEBUG LOG (REMOVE FOR FINAL RUN IF NEEDED)
-  // ---------------------------------------
-  console.log("Pilot condition:", cond);
+  console.log("Set:", set, "Condition:", cond);
   console.log("Ad assignment:", assignment);
 })();
