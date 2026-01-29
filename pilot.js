@@ -36,21 +36,20 @@
   // ---------------------------------------
   // SLOT-SPECIFIC CREATIVE PATHS
   // ---------------------------------------
-  function creativePath(brand, slot) {
-    if (slot === "billboard") {
-      return `images/brands/${brand}/billboard.jpg`;
-    }
-    if (slot === "side-left") {
-      return `images/brands/${brand}/side-left.jpg`;
-    }
-    if (slot === "side-right") {
-      return `images/brands/${brand}/side-right.jpg`;
-    }
-    if (slot === "inline") {
-      return `images/brands/${brand}/inline.jpg`;
-    }
-    return `images/brands/${brand}/bottom.jpg`;
+function creativePath(brand, slot, set) {
+  // Set B: one square image used for all slots
+  if (set === "B") {
+    return `images/brands/${brand}/ad.jpg`;
   }
+
+  // Set A: slot-specific creatives (keep your existing structure)
+  if (slot === "billboard") return `images/brands/${brand}/billboard.jpg`;
+  if (slot === "side-left") return `images/brands/${brand}/side-left.jpg`;
+  if (slot === "side-right") return `images/brands/${brand}/side-right.jpg`;
+  if (slot === "inline") return `images/brands/${brand}/inline.jpg`;
+  return `images/brands/${brand}/bottom.jpg`;
+}
+
 
   // ---------------------------------------
   // ASSIGN BRANDS TO SLOTS
@@ -74,7 +73,7 @@
     if (!img) return;
 
     const brand = assignment[slot];
-    img.src = creativePath(brand, slot);
+    img.src = creativePath(brand, slot, set);
     img.setAttribute("data-brand", brand);
     img.setAttribute("data-slot", slot);
   });
