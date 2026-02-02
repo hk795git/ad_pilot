@@ -29,7 +29,7 @@
 const SETS = {
   A: {
     focal: "Encool",
-    fillers: ["Vivoxy", "Mijiro", "Soliva", "Nuniva"],
+    fillers: ["Filter1", "Filter2", "Filter3", "Filter4"],
   },
   B: {
     focal: "McDonalds",
