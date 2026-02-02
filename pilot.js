@@ -22,11 +22,24 @@
     return;
   }
 
-  // ---------------------------------------
-  // BRAND SETUP (EDIT THESE NAMES ONLY)
-  // ---------------------------------------
-  const FOCAL = "Encool"; // focal brand
-  const FILLERS = ["Filler1", "Filler2", "Filler3", "Filler4"]; // filler brands
+// ---------------------------------------
+// BRAND SETUP (EDIT THESE NAMES ONLY)
+// ---------------------------------------
+// Folder names must match exactly (case-sensitive)
+const SETS = {
+  A: {
+    focal: "Encool",
+    fillers: ["Vivoxy", "Mijiro", "Soliva", "Nuniva"],
+  },
+  B: {
+    focal: "McDonalds",
+    fillers: ["KFC", "Wendys", "Chilis", "Jack"],
+  },
+};
+
+const FOCAL = SETS[set].focal;
+const FILLERS = SETS[set].fillers;
+
 
   // ---------------------------------------
   // MAP SLOT -> IMAGE ELEMENT ID
